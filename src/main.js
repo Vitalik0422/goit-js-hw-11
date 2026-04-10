@@ -24,12 +24,12 @@ const handleSubmit = e => {
   galleryService.hideGallery();
   fetchData(query)
     .then(response => {
-      if (response.data.hits.length === 0) {
+      if (response.hits.length === 0) {
         throw new Error(
           'Sorry, there are no images matching your search query. Please try again!'
         );
       }
-      const result = galleryService.createGallery(response.data.hits);
+      const result = galleryService.createGallery(response.hits);
       return galleryService
         .waitForImages(result)
         .then(() => galleryService.showGallery())

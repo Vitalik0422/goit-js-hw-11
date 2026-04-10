@@ -3,12 +3,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const galleryList = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 
-const galleryService = {
-  gallery: new SimpleLightbox('.gallery a'),
-  createGallery(images) {
-    const markup = images
-      .map(
-        item => `<li class="galleryItem">
+const createGallery = images => {
+  const markup = images
+    .map(
+      item => `<li class="galleryItem">
         <a href="${item.largeImageURL}">
           <img src="${item.webformatURL}" alt="${item.tags}" />
           <ul class="informationList">
@@ -19,39 +17,48 @@ const galleryService = {
           </ul>
         </a>
       </li>`
-      )
-      .join('');
-    galleryList.innerHTML = markup;
-    this.gallery.refresh();
-    return galleryList;
-  },
-
-  waitForImages(container) {
-    const img = [...container.querySelectorAll('img')];
-    const promises = img.map(
-      item =>
-        new Promise(resolve => {
-          if (item.complete) resolve();
-          else item.addEventListener('load', resolve);
-        })
-    );
-    return Promise.all(promises);
-  },
-  clearGallery() {
-    galleryList.innerHTML = '';
-  },
-  showGallery() {
-    galleryList.classList.add('isActiveGallery');
-  },
-  hideGallery() {
-    galleryList.classList.remove('isActiveGallery');
-  },
-  showLoader() {
-    loader.classList.add('isActive');
-  },
-  hideLoader() {
-    loader.classList.remove('isActive');
-  },
+    )
+    .join('');
+  galleryList.innerHTML = markup;
+  const gallery = new SimpleLightbox('.gallery a');
+  gallery.refresh();
+  return galleryList;
 };
 
-export default galleryService;
+const waitForImages = container => {
+  const img = [...container.querySelectorAll('img')];
+  const promises = img.map(
+    item =>
+      new Promise(resolve => {
+        if (item.complete) resolve();
+        else item.addEventListener('load', resolve);
+      })
+  );
+  return Promise.all(promises);
+};
+
+const clearGallery = () => {
+  galleryList.innerHTML = '';
+};
+const showGallery = () => {
+  galleryList.classList.add('isActiveGallery');
+};
+const hideGallery = () => {
+  galleryList.classList.remove('isActiveGallery');
+};
+const showLoader = () => {
+  loader.classList.add('isActive');
+};
+const hideLoader = () => {
+  loader.classList.remove('isActive');
+};
+
+export default {
+  createGallery,
+  clearGallery,
+  showGallery,
+  hideGallery,
+  showLoader,
+  hideLoader,
+  waitForImages,
+};
