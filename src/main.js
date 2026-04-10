@@ -2,6 +2,7 @@ import fetchData from './js/pixabay-api';
 import galleryService from './js/render-functions';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import './css/styles.css';
 
 const searchForm = document.querySelector('.form');
 
