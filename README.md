@@ -1,30 +1,14 @@
-# goit-js-hw-09
+Image Search Gallery A web application for searching and browsing images by
+keyword, built with Vite. Features
 
-## Description
+Search images by keyword via Pixabay API Smooth gallery reveal after all images
+are loaded Full-size image preview in a modal window Animated loading indicator
+Toast notifications for empty results or errors
 
-Home assignment #9 from GoIT JavaScript course.  
-Practice working with npm packages, ES Modules, SimpleLightbox library and
-localStorage.
+Technologies
 
-## Tasks
+Vite — project bundler Axios — HTTP requests SimpleLightbox — modal image viewer
+iziToast — notifications css-loader — loading indicator
 
-### Task 1 — Image Gallery
-
-Dynamic image gallery built with vanilla JS.  
-Clicking on an image opens a modal with a full-size version using the
-**SimpleLightbox** library.  
-Captions are displayed from the `alt` attribute with a 250ms delay.
-
-### Task 2 — Feedback Form
-
-A feedback form with **localStorage** persistence.  
-Field values are saved on every `input` event and restored on page reload.  
-On submit — validates that both fields are filled, logs `formData` to the
-console and clears the storage.
-
-## Technologies
-
-- Vite
-- JavaScript (ES Modules)
-- SimpleLightbox
-- localStorage API
+Type a keyword in the search field Press Search Browse results in the gallery
+Click any image to open a full-size preview
