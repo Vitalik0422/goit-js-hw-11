@@ -4,31 +4,28 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoIT: Home Work - 9 main page</title>
+    <title>GoIT: Home Work - 11 main page</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <main>
-      <div class="container">
-        <section class="main-page">
-          <h1>
-            <span class="first-word-name-company">GO</span>
-            <span class="secondary-word-name-company">IT</span>
-          </h1>
-          <p class="module-description">
-            Модуль 9 — NPM та модульність Навчились працювати з JSON форматом,
-            веб- та локальним сховищем, підключати Node.js і NPM,
-            використовувати ESModules (import/export) та встановлювати сторонні
-            пакети. Практика — галерея зображень із SimpleLightbox та збереження
-            даних форм.
-          </p>
-          <h2>Домашнє завдання №9</h2>
-          <nav class="page-navigation">
-            <a href="./1-gallery.html" class="link-btn">Галарея</a>
-            <a href="./2-form.html" class="link-btn">Форма для відгуків</a>
-          </nav>
-        </section>
+      <span class="loader"></span>
+      <div class="container galleryContainer">
+        <form class="form">
+          <label>
+            <input
+              class="input-search"
+              type="text"
+              name="search-text"
+              placeholder="Search images..."
+              required
+            />
+          </label>
+          <button type="submit" class="submit-btn">Search</button>
+        </form>
+        <ul class="gallery"></ul>
       </div>
     </main>
   </body>
+  <script type="module" src="./main.js"></script>
 </html>
