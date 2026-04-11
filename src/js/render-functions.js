@@ -2,6 +2,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 const galleryList = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+const gallery = new SimpleLightbox('.gallery a');
 
 const createGallery = images => {
   const markup = images
@@ -20,7 +21,6 @@ const createGallery = images => {
     )
     .join('');
   galleryList.innerHTML = markup;
-  const gallery = new SimpleLightbox('.gallery a');
   gallery.refresh();
   return galleryList;
 };
@@ -53,7 +53,7 @@ const hideLoader = () => {
   loader.classList.remove('isActive');
 };
 
-export default {
+export {
   createGallery,
   clearGallery,
   showGallery,

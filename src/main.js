@@ -1,5 +1,13 @@
-import fetchData from './js/pixabay-api';
-import galleryService from './js/render-functions';
+import { getImagesByQuery as fetchImages } from './js/pixabay-api';
+import {
+  showLoader,
+  showGallery,
+  hideLoader,
+  clearGallery,
+  hideGallery,
+  createGallery,
+  waitForImages,
+} from './js/render-functions';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import './css/styles.css';
@@ -19,20 +27,19 @@ const handleSubmit = e => {
     });
     return;
   }
-  galleryService.showLoader();
-  galleryService.clearGallery();
-  galleryService.hideGallery();
-  fetchData(query)
+  showLoader();
+  hideGallery();
+  clearGallery();
+  fetchImages(query)
     .then(response => {
       if (response.hits.length === 0) {
         throw new Error(
           'Sorry, there are no images matching your search query. Please try again!'
         );
       }
-      const result = galleryService.createGallery(response.hits);
-      return galleryService
-        .waitForImages(result)
-        .then(() => galleryService.showGallery())
+      const result = createGallery(response.hits);
+      return waitForImages(result)
+        .then(() => showGallery())
         .catch(err =>
           iziToast.error({
             title: 'Error',
@@ -49,7 +56,7 @@ const handleSubmit = e => {
       })
     )
     .finally(() => {
-      galleryService.hideLoader();
+      hideLoader();
       searchForm.reset();
     });
 };
